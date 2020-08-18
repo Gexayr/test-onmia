@@ -23,6 +23,7 @@ class VideosController extends Controller
     {
         /**
          * @TODO - to be implemented
+         *
          */
 
     }
@@ -49,8 +50,6 @@ class VideosController extends Controller
             'name' => 'required|max:50',
             'description' => 'required'
         ]);
-
-        dd($request->all());
 
         /**
          * @TODO - implement the logic to save the data
