@@ -48,12 +48,15 @@ class VideosController extends Controller
     {
         $request->validate([
             'name' => 'required|max:50',
-            'description' => 'required'
+            'description' => 'required',
+            'tags' => 'required|regex:/^[a-zA-Z0-9,-]+$/'
         ]);
 
-        /**
-         * @TODO - implement the logic to save the data
-         */
+        $video = new Video();
+        $video->name = $request->name;
+        $video->description = $request->description;
+        $video->tags = $request->tags;
+        $video->save();
 
         return redirect()->route('videos.index')->with('success', "Video created");
 
