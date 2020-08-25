@@ -16,14 +16,14 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Video Name Starting With:</strong>
-                    <input type="text" name="name_starting" class="form-control" placeholder="Name">
+                    <input type="text" name="name_starting" class="form-control" placeholder="Name"  value="{{ app('request')->input('name_starting') ? app('request')->input('name_starting') : ''}}">
                 </div>
             </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Video Name Ending With:</strong>
-                    <input type="text" name="name_ending" class="form-control" placeholder="Name">
+                    <input type="text" name="name_ending" class="form-control" placeholder="Name" value="{{ app('request')->input('name_ending') ? app('request')->input('name_ending') : ''}}">
                 </div>
             </div>
 

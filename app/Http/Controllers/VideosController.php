@@ -19,13 +19,13 @@ class VideosController extends Controller
     }
 
 
-    public function search()
+    public function search(Request $request)
     {
-        /**
-         * @TODO - to be implemented
-         *
-         */
+        $videos = Video::where('name', 'like', $request->name_starting . '%')
+            ->orWhere('name', 'like', '%' . $request->name_ending)
+            ->paginate(20);
 
+        return view('videos.index', compact('videos'))->with('1', (request()->input('page', 1) - 1) * 20);
     }
 
     /**
@@ -92,12 +92,11 @@ class VideosController extends Controller
     {
         $request->validate([
             'name' => 'required|max:100',
-            'description' => 'required'
+            'description' => 'required',
+            'tags' => 'required|regex:/^[a-zA-Z0-9,-]+$/'
         ]);
 
-        /**
-         * @TODO - implement the logic to save the data
-         */
+        $video->update($request->except(["_token","_method"]));
 
         return redirect()->route('videos.index')->with('success', "Video updated");
     }
